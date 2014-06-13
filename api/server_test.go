@@ -85,12 +85,13 @@ func BenchmarkDistancePost(b *testing.B) {
 	}
 
 	count := len(requestsJSON)
+
+	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		index := i % count
 		stringReader := strings.NewReader(requestsJSON[index])
-		b.ResetTimer()
 		resp, err := http.DefaultClient.Post(url, "application/json", stringReader)
-		if err == nil {
+		if err != nil {
 			b.Fatalf(err.Error())
 		}
 		resp.Body.Close()
