@@ -1,19 +1,3 @@
-//  {
-//    "places" :[
-//      {
-//        "name": <name>,
-//        "latitude": <lat>,
-//        "longitude": <long>
-//      },
-//      {
-//        "name": <name>,
-//        "latitude": <lat>,
-//        "longitude": <long>
-//      },
-//      ...
-//    ]
-//  }
-
 package api
 
 import (

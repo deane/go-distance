@@ -2,21 +2,22 @@ package distance
 
 import "math"
 
-// earthRadius is the mean radius of the earth in kilometers
+// The mean radius of the earth in km
 const earthRadius = 6371
 
-// equivalent of 1 km in miles
+// 1 km in miles
 const kmToMiles = 0.621371192
 
+// data is in degrees
 type Position struct {
-	Lat  float64 `json:"latitude"`  // Latitude in degrees
-	Long float64 `json:"longitude"` // Longitude in degrees
+	Lat  float64 `json:"latitude"`
+	Long float64 `json:"longitude"`
 }
 
 // HaversineDistance returns the distance between the two positions given
 // The distance is calculated using the Haversine formula
 // For more info, see https://en.wikipedia.org/wiki/Haversine_formula
-// The result is returned in kilometers
+// The result is returned in Miles if useMiles is true. Kilometers otherwise.
 func HaversineDistance(point1 *Position, point2 *Position, useMiles bool) float64 {
 
 	// convert coordinates into radians
@@ -30,11 +31,11 @@ func HaversineDistance(point1 *Position, point2 *Position, useMiles bool) float6
 		haversine(lat2-lat1)+math.Cos(lat1)*math.Cos(lat2)*haversine(long2-long1),
 	))
 
-    if useMiles{
-      return distance * kmToMiles
-    } else {
-	  return distance
-    }
+	if useMiles {
+		return distance * kmToMiles
+	} else {
+		return distance
+	}
 }
 
 // haversine is a trigonomic helper function

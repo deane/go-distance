@@ -2,19 +2,19 @@ package api
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
-// errorResponse represents the Json object
-// returned in case of an error
+// The JSON object returned in the case of an API
+// error.
 type errorResponse struct {
 	ErrorCode int    `json:"error_code"`
 	Message   string `json:"message"`
 }
 
+// jsonError returns the response to be sent given the error code
+// and the error message.
 func jsonError(code int, message string) []byte {
 	errStruct := errorResponse{code, message}
-	response, err := json.Marshal(errStruct)
-	fmt.Println(err)
+	response, _ := json.Marshal(errStruct)
 	return response
 }
