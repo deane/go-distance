@@ -1,4 +1,4 @@
 go-distance
 ===========
 
-REST API to get the distance between two points
+REST API to get the distance between two coordinates
