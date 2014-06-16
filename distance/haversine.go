@@ -3,7 +3,7 @@ package distance
 import "math"
 
 // The mean radius of the earth in km
-const earthRadius = 6371
+const EarthRadius = 6371
 
 // 1 km in miles
 const kmToMiles = 0.621371192
@@ -27,7 +27,7 @@ func HaversineDistance(point1 *Position, point2 *Position, useMiles bool) float6
 	long2 := degToRad(point2.Long)
 
 	// the haversine formula
-	distance := 2 * earthRadius * math.Asin(math.Sqrt(
+	distance := 2 * EarthRadius * math.Asin(math.Sqrt(
 		haversine(lat2-lat1)+math.Cos(lat1)*math.Cos(lat2)*haversine(long2-long1),
 	))
 

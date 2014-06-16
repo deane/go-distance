@@ -23,12 +23,27 @@ var SampleData = map[[4]float64]float64{
 	// Add more points here
 }
 
-func TestDistanceCalculation(t *testing.T) {
+func TestDistanceCalculationKm(t *testing.T) {
 	for latlongs, distance := range SampleData {
 		pos1 := &Position{latlongs[0], latlongs[1]}
 		pos2 := &Position{latlongs[2], latlongs[3]}
 
 		result := HaversineDistance(pos1, pos2, false)
+
+		if result-distance > closeEnough || distance-result > closeEnough {
+			t.Fatalf("Distances not matching. Expecting %f, got %f", distance, result)
+		}
+
+	}
+}
+
+func TestDistanceCalculationMiles(t *testing.T) {
+	for latlongs, distance := range SampleData {
+		pos1 := &Position{latlongs[0], latlongs[1]}
+		pos2 := &Position{latlongs[2], latlongs[3]}
+
+		result := HaversineDistance(pos1, pos2, true)
+		result /= kmToMiles
 
 		if result-distance > closeEnough || distance-result > closeEnough {
 			t.Fatalf("Distances not matching. Expecting %f, got %f", distance, result)
